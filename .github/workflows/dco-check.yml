@@ -19,6 +19,8 @@ jobs:
       - name: Set up Git
         run: git config --global user.email "actions@github.com" && git config --global user.name "GitHub Actions"
 
-      - name: Check DCO
-        run: |
-          git log --format=%B -n 1 ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }} | grep -i "Signed-off-by" > /dev/null || (echo "No DCO found in commit message" && exit 1)
+      - name: DCO Check
+        uses: tim-actions/dco@master
+        with:
+          commits: ${{ github.event.pull_request.commits_url }}
+          
