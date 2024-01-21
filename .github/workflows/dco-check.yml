@@ -21,10 +21,4 @@ jobs:
 
       - name: Check DCO
         run: |
-          DCO_CHECK_RESULT=$(git log --format=%b ${{ github.event.before }}..${{ github.sha }} | grep -E -i '^(Signed-off-by|Co-authored-by):')
-          if [ -z "$DCO_CHECK_RESULT" ]; then
-            echo "DCO check failed. Every commit must be signed off."
-            exit 1
-          else
-            echo "DCO check passed. Every commit has been signed off."
-          fi
+          git log --format=%B -n 1 ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }} | grep -i "Signed-off-by" > /dev/null || (echo "No DCO found in commit message" && exit 1)
