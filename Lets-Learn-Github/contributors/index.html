@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contributors</title>
+    <style>
+      /* Style for the contributors list container */
+      #contributors-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
+      /* Style for each contributor item */
+      .contributor {
+        width: calc(
+          30% - 10px
+        ); /* Adjust the width for three contributors in a row */
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+
+      /* Style for contributor name */
+      .contributor-name {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      /* Style for contributor details */
+      .contributor-details {
+        color: #666;
+        width: 100%;
+        overflow: auto;
+      }
+
+      /* Style for contributor image */
+      .contributor-image {
+        border-radius: 50%;
+        margin-bottom: 10px;
+        width: 100px;
+      }
+
+      /* Responsive layout */
+
+      @media (max-width: 750px) {
+        .contributor {
+          width: calc(
+            50% - 10px
+          ); /* Adjust the width for two contributors in a row */
+        }
+      }
+
+      @media (max-width: 400px) {
+        .contributor {
+          width: 100%; /* Full width for one contributor in a row */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Contributors</h1>
+    <ul id="contributors-list">
+      <!-- Contributors will be dynamically added here -->
+    </ul>
+    <script>
+      async function fetchContributors() {
+        try {
+          const response = await fetch("contributors.md");
+          const data = await response.text();
+          const contributors = data.split("### ");
+
+          // Remove the first element as it's either empty or contains the title
+          contributors.shift();
+
+          contributors.forEach((contributor) => {
+            // Extract lines of contributor details
+            const lines = contributor.trim().split("\n");
+
+            // Filter out blank lines and <hr> tags
+            const filteredLines = lines.filter(
+              (line) => line.trim() !== "" && !line.trim().startsWith("<hr>")
+            );
+
+            const name = filteredLines[0];
+            const details = filteredLines
+              .slice(1)
+              .map((line) => `<li>${line}</li>`)
+              .join("");
+
+            // Extract image URL from the details
+            const imageURLMatch = details.match(
+              /Profile\(if any\): \[Profile\]\((.*?)\)/
+            );
+            const imageURL = imageURLMatch ? imageURLMatch[1] : ""; // Extracting the URL from the matched group
+
+            // Create list item for the contributor with image
+            const li = document.createElement("li");
+            li.classList.add("contributor");
+            li.innerHTML = `
+                        <div class="contributor-name">
+                            <img src="${imageURL}" alt="${name}'s Profile Image" class="contributor-image">
+                            ${name}
+                        </div>
+                        <div class="contributor-details">
+                            <ul>${details}</ul>
+                        </div>
+                    `;
+            document.getElementById("contributors-list").appendChild(li);
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      fetchContributors();
+    </script>
+  </body>
+</html>
+
