@@ -1,0 +1,22 @@
+{
+  "name": "golang-tutorial",
+  "version": "1.0.0",
+  "description": "pacakge for open-source",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudhanshutech/Lets-Get-To-Open-Source.git"
+  },
+  "keywords": [
+    "commit"
+  ],
+  "author": "Sudhanshu Dasgupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudhanshutech/Lets-Get-To-Open-Source/issues"
+  },
+  "homepage": "https://github.com/sudhanshutech/Lets-Get-To-Open-Source#readme"
+}
