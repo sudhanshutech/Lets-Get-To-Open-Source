@@ -22,4 +22,4 @@ jobs:
           netlify deploy --dir=Lets-Learn-Github --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: 84b22d56-7e24-4992-b8a0-00303863a9f1
