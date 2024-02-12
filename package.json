@@ -1,0 +1,19 @@
+{
+  "name": "open-source-sudhanshu",
+  "version": "1.0.0",
+  "description": "package for open-source individuals",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudhanshutech/Lets-Get-To-Open-Source.git"
+  },
+  "author": "Sudhanshu Dasgupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudhanshutech/Lets-Get-To-Open-Source/issues"
+  },
+  "homepage": "https://github.com/sudhanshutech/Lets-Get-To-Open-Source#readme"
+}
