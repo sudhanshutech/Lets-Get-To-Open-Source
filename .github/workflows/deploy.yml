@@ -17,9 +17,14 @@ jobs:
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
-      - name: Build and deploy to Netlify
-        run: |
-          netlify deploy --dir=Lets-Learn-Github --prod
+      - name: Deploy to Netlify
+        id: netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: 'public'
+          production-deploy: false
+          github-token: ${{ secrets.GH_ACCESS_TOKEN }}
+          enable-commit-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
