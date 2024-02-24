@@ -1,4 +1,4 @@
-# Project Name
+# Open Source Contributions
 
 Welcome to the Project Name repository! We appreciate your interest in contributing. This README file will guide you through the process of making your first contribution.
 
