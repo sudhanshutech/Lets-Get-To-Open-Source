@@ -15,9 +15,8 @@
 
       /* Style for each contributor item */
       .contributor {
-        width: calc(
-          30% - 10px
-        ); /* Adjust the width for three contributors in a row */
+        width: calc(30% - 10px);
+        /* Adjust the width for three contributors in a row */
         margin-bottom: 20px;
         padding: 20px;
         border: 1px solid #ccc;
@@ -37,6 +36,10 @@
         color: #666;
         width: 100%;
         overflow: auto;
+        background-color: #f9f9f9;
+        box-shadow: 0 0 5px #ccc;
+        padding: 6px;
+        border-radius: 5px;
       }
 
       /* Style for contributor image */
@@ -50,20 +53,22 @@
 
       @media (max-width: 750px) {
         .contributor {
-          width: calc(
-            50% - 10px
-          ); /* Adjust the width for two contributors in a row */
+          width: calc(50% - 10px);
+          /* Adjust the width for two contributors in a row */
         }
       }
 
       @media (max-width: 400px) {
         .contributor {
-          width: 100%; /* Full width for one contributor in a row */
+          width: 100%;
+          /* Full width for one contributor in a row */
         }
       }
     </style>
   </head>
+
   <body>
+    <div>
     <h1>Contributors</h1>
     <ul id="contributors-list">
       <!-- Contributors will be dynamically added here -->
@@ -90,6 +95,12 @@
             const name = filteredLines[0];
             const details = filteredLines
               .slice(1)
+              .filter(
+                (line) =>
+                  !line.includes("LinkedIn:") &&
+                  !line.includes("GitHub:") &&
+                  !line.includes("Twitter:")
+              )
               .map((line) => `<li>${line}</li>`)
               .join("");
 
@@ -99,14 +110,35 @@
             );
             const imageURL = imageURLMatch ? imageURLMatch[1] : ""; // Extracting the URL from the matched group
 
+            const linkedInMatch = contributor.match(
+              /LinkedIn: \[LinkedIn\]\((.*?)\)/
+            );
+            const linkedInLink = linkedInMatch ? linkedInMatch[1] : "";
+            const gitHubMatch = contributor.match(
+              /GitHub: \[GitHub\]\((.*?)\)/
+            );
+            const gitHubLink = gitHubMatch ? gitHubMatch[1] : "";
+            const twitterMatch = contributor.match(
+              /Twitter: \[Twitter\]\((.*?)\)/
+            );
+            const twitterLink = twitterMatch ? twitterMatch[1] : "";
+
             // Create list item for the contributor with image
             const li = document.createElement("li");
             li.classList.add("contributor");
             li.innerHTML = `
                         <div class="contributor-name">
+                          <div>
                             <img src="${imageURL}" alt="${name}'s Profile Image" class="contributor-image">
                             ${name}
+                          </div>
+                            <div class="social-icons">
+                  <a href="${linkedInLink}" target="_blank"><img height="24" src="../public/images/linkedin.png" alt="LinkedIn Icon"></a>
+                  <a href="${gitHubLink}" target="_blank"><img height="24" src="../public/images/github.png" alt="Twitter Icon"></a
+                  <a href="${twitterLink}" target="_blank"><img height="24" src="../public/images/twiiter.png" alt="GitHub Icon"></a>
+              </div>
                         </div>
+                        
                         <div class="contributor-details">
                             <ul>${details}</ul>
                         </div>
@@ -120,6 +152,6 @@
 
       fetchContributors();
     </script>
+    </div>
   </body>
 </html>
-
