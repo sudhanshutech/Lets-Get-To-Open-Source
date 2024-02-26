@@ -3,7 +3,7 @@ slug: first-blog-post
 title: Starting with Open Source
 authors:
   name: Sudhanshu Dasgupta
-  title: SWE | Open Source Maintainer
+  title: Software Engineer | Open Source Maintainer
   url: https://github.com/sudhanshutech
   image_url: https://avatars.githubusercontent.com/u/90546692?v=4
 tags: [open-source, beginners, github]
