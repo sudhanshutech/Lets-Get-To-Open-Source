@@ -20,5 +20,11 @@
 
 <hr>
 
+### Shivam Gupta
+
+- Location: India
+- Bio: I am frontend developer and open source enthusiast
+- GitHub: [GitHub](https://github.com/ShivamCoder23)
+- Profile(if any): [Profile](https://avatars.githubusercontent.com/u/160073697?v=4)
 
 
